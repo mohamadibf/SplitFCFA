@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inscription - SplitFCFA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              teal: '#006D5B',
+              'teal-light': '#E6F0EE',
+              coral: '#F56C6C',
+              gray: '#4A5568',
+              'gray-light': '#F7FAFC',
+              'gray-border': '#E2E8F0',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style data-purpose="custom-utilities">
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .gradient-border-top {
+      position: relative;
+    }
+    .gradient-border-top::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(to right, #006D5B, #F56C6C);
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] min-h-screen flex items-center justify-center p-4">
+<!-- BEGIN: RegistrationCard -->
+<main class="w-full max-w-md bg-white rounded-lg shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] gradient-border-top p-8 sm:p-10">
+<!-- Logo and Header -->
+<div class="text-center mb-8">
+<img alt="SplitFCFA Logo" class="w-16 h-16 mx-auto mb-4 object-contain rounded-lg border border-gray-100 shadow-sm" src="https://lh3.googleusercontent.com/aida/AP1WRLvtGDO3j3bli0xuuYnf_hQXUPBxCKMG_VJYwY6uttJVKDjEnMMtreZSTbfFtqrMuk4umMkE8O8FoBnTRVktfmcbHBu8zjUF2WdtjOvC4pe5PSUuvptCwPeDMIb04HQ1GGGBVN3BM_k6sQAVQkBRnLDiKdol1rKlqTSuFL7NKpzAf8WR58iAZPgsGBmi7-V904aBNN8urROQlm7vbBbw1Xvnpmv5SlYv58GvG4Ad4XcGLlugwQcYZUioPg"/>
+<h1 class="text-2xl font-bold text-gray-900 mb-2">Créez votre compte</h1>
+<p class="text-brand-gray text-sm">Rejoignez-nous pour simplifier vos dépenses communes.</p>
+</div>
+<!-- Registration Form -->
+<form action="#" class="space-y-5" method="POST">
+<!-- Full Name Field -->
+<div>
+<label class="block text-sm font-semibold text-gray-800 mb-1.5" for="fullName">Nom complet</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 bg-[#EEF2F6] border-transparent rounded-md text-sm text-gray-900 focus:ring-2 focus:ring-brand-teal focus:border-transparent focus:bg-white transition-colors duration-200" id="fullName" name="fullName" placeholder="Jean Dupont" required="" type="text"/>
+</div>
+</div>
+<!-- Email Field -->
+<div>
+<label class="block text-sm font-semibold text-gray-800 mb-1.5" for="email">Adresse e-mail</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 bg-[#EEF2F6] border-transparent rounded-md text-sm text-gray-900 focus:ring-2 focus:ring-brand-teal focus:border-transparent focus:bg-white transition-colors duration-200" id="email" name="email" placeholder="nom@exemple.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div>
+<label class="block text-sm font-semibold text-gray-800 mb-1.5" for="password">Mot de passe</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<input class="block w-full pl-10 pr-10 py-2.5 bg-[#EEF2F6] border-transparent rounded-md text-sm text-gray-900 focus:ring-2 focus:ring-brand-teal focus:border-transparent focus:bg-white transition-colors duration-200" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+<svg class="h-5 w-5 text-gray-500 hover:text-gray-700" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Terms Checkbox -->
+<div class="flex items-start mt-4">
+<div class="flex items-center h-5">
+<input class="focus:ring-brand-teal h-4 w-4 text-brand-teal border-gray-300 rounded" id="terms" name="terms" required="" type="checkbox"/>
+</div>
+<div class="ml-2 text-sm">
+<label class="font-medium text-brand-gray" for="terms">
+            J'accepte les <a class="text-brand-teal hover:underline" href="#">conditions d'utilisation</a> et la <a class="text-brand-teal hover:underline" href="#">politique de confidentialité</a>.
+          </label>
+</div>
+</div>
+<!-- Submit Button -->
+<div class="pt-2">
+<button class="w-full flex justify-center items-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-brand-teal hover:bg-[#005a4a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-teal transition-colors duration-200" type="submit">
+          S'inscrire
+          <svg class="ml-2 -mr-1 h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</form>
+<!-- Login Link -->
+<div class="mt-8 text-center text-sm text-brand-gray">
+      Déjà un compte ? 
+      <a class="font-medium text-brand-teal hover:underline transition-colors duration-200" href="#">
+        Se connecter
+      </a>
+</div>
+</main>
+<!-- END: RegistrationCard -->
+</body></html>

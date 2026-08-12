@@ -8,11 +8,33 @@ import SettingsLayout from '@/layouts/settings/layout';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
+// Pages that render their own full SplitFCFA chrome (sidebar/card) and must not
+// be wrapped by AppLayout/AuthLayout/SettingsLayout. Note: a page's static
+// `Component.layout` property is NOT a reliable way to opt out of the layout
+// returned here — Inertia calls it with the page's *props*, not the rendered
+// element, so an identity function like `(page) => page` can still resolve to
+// the default layout depending on the props' shape. Opting out here, the same
+// way `welcome` already did, is the only mechanism that's actually safe.
+const NO_LAYOUT_PAGES = new Set([
+    'welcome',
+    'dashboard',
+    'expenses/index',
+    'settle-up',
+    'analytics',
+    'auth/login',
+    'auth/register',
+    'auth/forgot-password',
+    'auth/two-factor-challenge',
+    'settings/profile',
+    'settings/security',
+    'settings/appearance',
+]);
+
 createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
     layout: (name) => {
         switch (true) {
-            case name === 'welcome':
+            case NO_LAYOUT_PAGES.has(name):
                 return null;
             case name.startsWith('auth/'):
                 return AuthLayout;

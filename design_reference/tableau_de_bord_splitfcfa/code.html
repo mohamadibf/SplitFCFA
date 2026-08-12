@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SplitFCFA - Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline-variant": "#bcc9c6",
+                      "secondary-container": "#fe7488",
+                      "on-tertiary-container": "#fffbff",
+                      "tertiary-fixed": "#ffdf9f",
+                      "surface-container-high": "#dee9fc",
+                      "secondary-fixed-dim": "#ffb2b9",
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#5c4300",
+                      "tertiary": "#765700",
+                      "background": "#f8f9ff",
+                      "surface-container": "#e6eeff",
+                      "surface": "#f8f9ff",
+                      "error": "#ba1a1a",
+                      "secondary-fixed": "#ffdadc",
+                      "surface-container-highest": "#d9e3f6",
+                      "on-tertiary-fixed": "#261a00",
+                      "surface-dim": "#d0dbed",
+                      "surface-container-low": "#eff4ff",
+                      "inverse-surface": "#27313f",
+                      "primary": "#00685f",
+                      "on-secondary-fixed": "#400010",
+                      "primary-container": "#008378",
+                      "surface-bright": "#f8f9ff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed-dim": "#f9bd22",
+                      "on-primary-fixed": "#00201d",
+                      "surface-tint": "#006a61",
+                      "on-primary-container": "#f4fffc",
+                      "outline": "#6d7a77",
+                      "inverse-primary": "#6bd8cb",
+                      "surface-variant": "#d9e3f6",
+                      "on-error": "#ffffff",
+                      "on-surface-variant": "#3d4947",
+                      "secondary": "#a93349",
+                      "on-secondary-container": "#730425",
+                      "on-primary-fixed-variant": "#005049",
+                      "tertiary-container": "#956e00",
+                      "error-container": "#ffdad6",
+                      "on-surface": "#121c2a",
+                      "on-background": "#121c2a",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed": "#89f5e7",
+                      "primary-fixed-dim": "#6bd8cb",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-secondary-fixed-variant": "#891933"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "40px",
+                      "xs": "4px",
+                      "base": "4px",
+                      "gutter": "16px",
+                      "md": "16px",
+                      "xl": "32px",
+                      "3xl": "64px",
+                      "2xl": "48px",
+                      "sm": "8px",
+                      "lg": "24px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased h-screen overflow-hidden flex">
+<!-- SideNav Desktop -->
+<nav class="bg-surface-container dark:bg-surface-container-high text-primary dark:text-primary-fixed font-label-md text-label-md h-screen w-64 fixed left-0 top-0 shadow-[4px_0_24px_rgba(0,104,95,0.08)] hidden md:flex flex-col py-lg gap-sm z-50">
+<div class="px-6 mb-8 flex items-center gap-3">
+<img alt="SplitFCFA Logo" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxLlQlc-QRMQSb3etyfVstXhc9coPJ674PrN5MyXRnZXepytbF3ONbOYgIBXVpMmuO50k0HlF3csInWxaXfwnIkXUKBBSkW57byynPUcpxawM4EFwBtkFGr_A0NFyxmI7XdSOYEIchfIG01iOJ8v5WaQUa9XM7jiJxnJAIyHRqV5egOBzICA1Vj9D9vSEkuRJxESmHn15Xl4sxvr2YeEgr91atu5HxA4gZoNjNX9ZUNTiL_nhsOxc"/>
+<div>
+<h1 class="font-headline-md text-headline-md font-extrabold text-primary dark:text-primary-fixed">SplitFCFA</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-80">Collaborative Harmony</p>
+</div>
+</div>
+<div class="flex-1 px-4 flex flex-col gap-2">
+<a class="flex items-center gap-4 bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-4 py-3 mx-2 transition-transform duration-150 active:scale-98 shadow-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest dark:hover:bg-inverse-surface rounded-xl px-4 py-3 mx-2 hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+                Expenses
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest dark:hover:bg-inverse-surface rounded-xl px-4 py-3 mx-2 hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">handshake</span>
+                Settle Up
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest dark:hover:bg-inverse-surface rounded-xl px-4 py-3 mx-2 hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                Analytics
+            </a>
+</div>
+<div class="px-6 mt-auto">
+<button class="w-full bg-primary text-on-primary rounded-xl py-3 font-label-md text-label-md hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(0,104,95,0.2)] transition-all duration-200 active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                 Add Expense
+             </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 h-screen overflow-y-auto bg-surface-container-low relative">
+<!-- TopNavBar Mobile / Mobile Header -->
+<header class="md:hidden bg-surface dark:bg-surface-dim w-full top-0 shadow-[0_4px_20px_rgba(0,104,95,0.1)] flex justify-between items-center px-margin-mobile py-4 sticky z-40">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed flex items-center gap-2">
+<img alt="SplitFCFA Logo" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxLlQlc-QRMQSb3etyfVstXhc9coPJ674PrN5MyXRnZXepytbF3ONbOYgIBXVpMmuO50k0HlF3csInWxaXfwnIkXUKBBSkW57byynPUcpxawM4EFwBtkFGr_A0NFyxmI7XdSOYEIchfIG01iOJ8v5WaQUa9XM7jiJxnJAIyHRqV5egOBzICA1Vj9D9vSEkuRJxESmHn15Xl4sxvr2YeEgr91atu5HxA4gZoNjNX9ZUNTiL_nhsOxc"/>
+                 SplitFCFA
+            </h1>
+<div class="flex gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200 active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<img alt="User Profile Avatar" class="w-8 h-8 rounded-full border-2 border-surface-container-highest object-cover" data-alt="A close up portrait of a young professional with a friendly smile, vibrant background, studio lighting, modern high quality profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMOmn5z8PukTz76GsZvkra4A6INmhnaIt6O8zuJQcuS6DSj-M7ae1hHQIKJ6oK2C_K4jjVI6q02UtPBHqnomedll4fZBDIiB3cL7WKspW0n1JDUv_eLLN-7Vpy7wHPkTvaAHzq8RMhsr8xh0TtUpi8Al_o45D0sWAShU_QLbb1qthUMwGW44UvgkkqxLow95hWgmFSoCzgwfjLWmHlRlr_taMjOVJbD-wgTKIvQUd2OdoYUBtHu-s"/>
+</div>
+</header>
+<!-- Top Nav Links Mobile -->
+<div class="md:hidden flex overflow-x-auto gap-4 px-margin-mobile py-2 bg-surface border-b border-surface-container-highest sticky top-[72px] z-30">
+<a class="text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed font-bold pb-1 whitespace-nowrap" href="#">Dashboard</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary transition-colors duration-200 whitespace-nowrap pb-1" href="#">Expenses</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary transition-colors duration-200 whitespace-nowrap pb-1" href="#">Settle Up</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary transition-colors duration-200 whitespace-nowrap pb-1" href="#">Analytics</a>
+</div>
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-lg md:py-xl">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<p class="font-label-md text-label-md text-primary uppercase tracking-wider mb-1">Résumé de groupe</p>
+<h2 class="font-display-lg text-display-lg text-on-surface hidden md:block">Weekend Trip</h2>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface md:hidden">Weekend Trip</h2>
+</div>
+<div class="hidden md:flex gap-4 items-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200 active:scale-95 p-2 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200 active:scale-95 p-2 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<img alt="User Profile Avatar" class="w-10 h-10 rounded-full border-2 border-surface-container-highest object-cover cursor-pointer hover:opacity-80 transition-opacity" data-alt="A modern stylish portrait photo of a smiling woman in a well lit studio, vibrant and clear, perfect for a high end app profile icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQSN60OyMjYCjCgRq-uJUfOWnt7io_uORoZzS84SUA_uOnaxEvubklSJnEFCJUKDkZba8KyPjdIB2gVBSRQuPQrXqmMfFlP1stHcD8PhZ703kN6sd-HfMdphuBfFbr-yckOL1bGP3QMj8O-Wp7tmQ5_g0FMZsQhnZz91Np0JVu-xxBCcKbQVIiWwGox4cnSgywyws1M9Rya4mC90C_g3-rTkGwrexCIOBgJKjFFtYnjsGFGeOvHyo"/>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-gutter mb-xl">
+<!-- Stat 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 md:p-6 shadow-[0_4px_20px_rgba(0,104,95,0.05)] hover:-translate-y-1 transition-transform duration-300 flex flex-col gap-2 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+<p class="font-label-md text-label-md text-on-surface-variant relative z-10">Total du groupe</p>
+<div class="font-headline-lg text-headline-lg text-on-surface relative z-10">450k <span class="text-body-md font-body-md text-on-surface-variant">CFA</span></div>
+</div>
+<!-- Stat 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 md:p-6 shadow-[0_4px_20px_rgba(0,104,95,0.05)] hover:-translate-y-1 transition-transform duration-300 flex flex-col gap-2 relative overflow-hidden group border-l-4 border-primary">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary-container/10 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+<p class="font-label-md text-label-md text-on-surface-variant relative z-10">Votre solde</p>
+<div class="font-headline-lg text-headline-lg text-primary relative z-10">+15k <span class="text-body-md font-body-md text-primary/70">CFA</span></div>
+<span class="absolute top-4 right-4 text-primary material-symbols-outlined text-[20px]">trending_up</span>
+</div>
+<!-- Stat 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 md:p-6 shadow-[0_4px_20px_rgba(0,104,95,0.05)] hover:-translate-y-1 transition-transform duration-300 flex flex-col gap-2 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+<p class="font-label-md text-label-md text-on-surface-variant relative z-10">À recevoir</p>
+<div class="font-headline-lg text-headline-lg text-primary relative z-10">25k <span class="text-body-md font-body-md text-on-surface-variant">CFA</span></div>
+</div>
+<!-- Stat 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 md:p-6 shadow-[0_4px_20px_rgba(0,104,95,0.05)] hover:-translate-y-1 transition-transform duration-300 flex flex-col gap-2 relative overflow-hidden group border-l-4 border-secondary">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-secondary/5 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+<p class="font-label-md text-label-md text-on-surface-variant relative z-10">À payer</p>
+<div class="font-headline-lg text-headline-lg text-secondary relative z-10">10k <span class="text-body-md font-body-md text-secondary/70">CFA</span></div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

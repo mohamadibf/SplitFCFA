@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mot de passe oublié - SplitFCFA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#6bd8cb",
+                    "on-tertiary-fixed-variant": "#5c4300",
+                    "on-primary-fixed-variant": "#005049",
+                    "on-secondary-fixed": "#400010",
+                    "surface-container-high": "#dee9fc",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#121c2a",
+                    "tertiary-fixed-dim": "#f9bd22",
+                    "surface-variant": "#d9e3f6",
+                    "primary-container": "#008378",
+                    "background": "#f8f9ff",
+                    "on-surface-variant": "#3d4947",
+                    "surface-container-low": "#eff4ff",
+                    "surface-container": "#e6eeff",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "secondary": "#a93349",
+                    "surface-tint": "#006a61",
+                    "secondary-fixed-dim": "#ffb2b9",
+                    "surface-dim": "#d0dbed",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-tertiary-fixed": "#261a00",
+                    "surface-bright": "#f8f9ff",
+                    "on-secondary-container": "#730425",
+                    "inverse-primary": "#6bd8cb",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#ffdadc",
+                    "tertiary-container": "#956e00",
+                    "on-secondary-fixed-variant": "#891933",
+                    "tertiary": "#765700",
+                    "on-primary-fixed": "#00201d",
+                    "tertiary-fixed": "#ffdf9f",
+                    "secondary-container": "#fe7488",
+                    "primary": "#00685f",
+                    "on-primary-container": "#f4fffc",
+                    "outline": "#6d7a77",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f8f9ff",
+                    "inverse-surface": "#27313f",
+                    "surface-container-highest": "#d9e3f6",
+                    "on-surface": "#121c2a",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#bcc9c6",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#fffbff",
+                    "primary-fixed": "#89f5e7",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "gutter": "16px",
+                    "base": "4px",
+                    "md": "16px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "3xl": "64px",
+                    "xl": "32px",
+                    "2xl": "48px",
+                    "xs": "4px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": [
+                            "Inter"
+                    ],
+                    "headline-lg": [
+                            "Inter"
+                    ],
+                    "label-md": [
+                            "Inter"
+                    ],
+                    "label-sm": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "Inter"
+                    ],
+                    "headline-lg-mobile": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "800"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+        .card-shadow {
+            box-shadow: 0 10px 30px -10px rgba(0, 104, 95, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen flex items-center justify-center p-margin-mobile md:p-margin-desktop antialiased text-on-background relative overflow-hidden">
+<!-- Decorative background elements -->
+<div class="absolute top-[-10%] left-[-5%] w-64 h-64 bg-primary-container rounded-full mix-blend-multiply filter blur-[80px] opacity-40 animate-blob"></div>
+<div class="absolute bottom-[-10%] right-[-5%] w-72 h-72 bg-secondary-container rounded-full mix-blend-multiply filter blur-[80px] opacity-30 animate-blob animation-delay-2000"></div>
+<main class="w-full max-w-md relative z-10">
+<!-- Logo Header -->
+<div class="flex justify-center mb-xl">
+<img alt="SplitFCFA Logo" class="w-24 h-24 object-contain drop-shadow-md hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida/AP1WRLvtGDO3j3bli0xuuYnf_hQXUPBxCKMG_VJYwY6uttJVKDjEnMMtreZSTbfFtqrMuk4umMkE8O8FoBnTRVktfmcbHBu8zjUF2WdtjOvC4pe5PSUuvptCwPeDMIb04HQ1GGGBVN3BM_k6sQAVQkBRnLDiKdol1rKlqTSuFL7NKpzAf8WR58iAZPgsGBmi7-V904aBNN8urROQlm7vbBbw1Xvnpmv5SlYv58GvG4Ad4XcGLlugwQcYZUioPg"/>
+</div>
+<!-- Recovery Card -->
+<div class="bg-surface rounded-[24px] p-lg md:p-xl card-shadow border border-surface-variant relative overflow-hidden">
+<!-- Subtle top accent line -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary"></div>
+<div class="text-center mb-lg">
+<h1 class="font-headline-md text-headline-md text-on-surface mb-sm">Mot de passe oublié ?</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Entrez l'adresse e-mail associée à votre compte et nous vous enverrons un lien pour réinitialiser votre mot de passe.
+                </p>
+</div>
+<form class="flex flex-col gap-md" onsubmit="event.preventDefault(); alert('Lien de réinitialisation envoyé !');">
+<!-- Email Input -->
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1" for="email">Adresse e-mail</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors">
+                            mail
+                        </span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-xl py-3 pl-10 pr-4 font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" id="email" name="email" placeholder="nom@exemple.com" required="" type="email"/>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full mt-sm bg-primary text-on-primary font-label-md text-label-md py-3 px-6 rounded-xl shadow-[0_4px_14px_rgba(0,104,95,0.25)] hover:bg-surface-tint hover:-translate-y-0.5 active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 group" type="submit">
+<span>Envoyer le lien</span>
+<span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">
+                        arrow_forward
+                    </span>
+</button>
+</form>
+<!-- Back to Login -->
+<div class="mt-xl text-center">
+<a class="inline-flex items-center gap-2 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[18px] group-hover:-translate-x-1 transition-transform">
+                        arrow_back
+                    </span>
+                    Retour à la connexion
+                </a>
+</div>
+</div>
+<!-- Footer / Support -->
+<div class="mt-lg text-center font-label-sm text-label-sm text-outline">
+<p>Besoin d'aide ? <a class="text-primary hover:underline font-medium" href="#">Contacter le support</a></p>
+</div>
+</main>
+<style>
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+    </style>
+</body></html>

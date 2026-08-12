@@ -9,13 +9,8 @@
 
 @theme {
     --font-sans:
-        'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
-        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-        'Noto Color Emoji';
-
-    --radius-lg: var(--radius);
-    --radius-md: calc(var(--radius) - 2px);
-    --radius-sm: calc(var(--radius) - 4px);
+        'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
     --color-background: var(--background);
     --color-foreground: var(--foreground);
@@ -59,77 +54,319 @@
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
+
+    /* SplitFCFA design system (design_reference/splitfcfa_design_system/DESIGN.md).
+       Indirected through CSS variables (defined in :root/.dark below) rather
+       than literal hex, the same way the shadcn tokens above already work —
+       every SplitFCFA screen/component only ever uses these token classes
+       (bg-surface, text-on-surface, bg-primary-container, ...), so making the
+       tokens themselves theme-aware is enough to make the whole app respond
+       to dark mode without touching individual pages. */
+    --color-surface: var(--surface);
+    --color-surface-dim: var(--surface-dim);
+    --color-surface-bright: var(--surface-bright);
+    --color-surface-container-lowest: var(--surface-container-lowest);
+    --color-surface-container-low: var(--surface-container-low);
+    --color-surface-container: var(--surface-container);
+    --color-surface-container-high: var(--surface-container-high);
+    --color-surface-container-highest: var(--surface-container-highest);
+    --color-surface-variant: var(--surface-variant);
+    --color-surface-tint: var(--surface-tint);
+    --color-on-surface: var(--on-surface);
+    --color-on-surface-variant: var(--on-surface-variant);
+    --color-inverse-surface: var(--inverse-surface);
+    --color-inverse-on-surface: var(--inverse-on-surface);
+    --color-inverse-primary: var(--inverse-primary);
+    --color-outline: var(--outline);
+    --color-outline-variant: var(--outline-variant);
+
+    --color-on-primary: var(--on-primary);
+    --color-primary-container: var(--primary-container);
+    --color-on-primary-container: var(--on-primary-container);
+    --color-primary-fixed: var(--primary-fixed);
+    --color-primary-fixed-dim: var(--primary-fixed-dim);
+    --color-on-primary-fixed: var(--on-primary-fixed);
+    --color-on-primary-fixed-variant: var(--on-primary-fixed-variant);
+
+    --color-on-secondary: var(--on-secondary);
+    --color-secondary-container: var(--secondary-container);
+    --color-on-secondary-container: var(--on-secondary-container);
+    --color-secondary-fixed: var(--secondary-fixed);
+    --color-secondary-fixed-dim: var(--secondary-fixed-dim);
+    --color-on-secondary-fixed: var(--on-secondary-fixed);
+    --color-on-secondary-fixed-variant: var(--on-secondary-fixed-variant);
+
+    --color-tertiary: var(--tertiary);
+    --color-on-tertiary: var(--on-tertiary);
+    --color-tertiary-container: var(--tertiary-container);
+    --color-on-tertiary-container: var(--on-tertiary-container);
+    --color-tertiary-fixed: var(--tertiary-fixed);
+    --color-tertiary-fixed-dim: var(--tertiary-fixed-dim);
+    --color-on-tertiary-fixed: var(--on-tertiary-fixed);
+    --color-on-tertiary-fixed-variant: var(--on-tertiary-fixed-variant);
+
+    /* "error" (bare) was missing before this pass — text-error (used for
+       negative expense shares) had no matching utility. Added alongside the
+       pre-existing error-container/on-error/on-error-container roles. */
+    --color-error: var(--error);
+    --color-error-container: var(--error-container);
+    --color-on-error: var(--on-error);
+    --color-on-error-container: var(--on-error-container);
+    --color-on-background: var(--on-background);
+
+    /* xl is the largest named spacing token we add: 2xl and 3xl are deliberately
+       omitted because Tailwind v4 derives named max-width, width and height
+       sizes from this same spacing namespace, and 2xl/3xl entries here would
+       silently shrink those (e.g. "max-w-2xl") app-wide to small values. */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-gutter: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-margin-mobile: 16px;
+    --spacing-margin-desktop: 40px;
+
+    /* xs/sm/md/lg/xl above are also valid Tailwind max-width names (28rem for
+       "md", etc). Tailwind checks --max-width-* before falling back to
+       --spacing-*, so pinning these here keeps "max-w-md" etc at their normal
+       Tailwind size instead of collapsing to the small spacing value. */
+    --max-width-xs: 20rem;
+    --max-width-sm: 24rem;
+    --max-width-md: 28rem;
+    --max-width-lg: 32rem;
+    --max-width-xl: 36rem;
+
+    /* Display/headline scale uses a warm editorial serif — the "Warm Ledger"
+       signature: money and page titles get personality, while body copy,
+       labels and every interactive control stay in Inter for clarity. */
+    --font-display-lg:
+        'Instrument Serif', ui-serif, Georgia, 'Times New Roman', serif;
+    --font-headline-lg:
+        'Instrument Serif', ui-serif, Georgia, 'Times New Roman', serif;
+    --font-headline-lg-mobile:
+        'Instrument Serif', ui-serif, Georgia, 'Times New Roman', serif;
+    --font-headline-md:
+        'Instrument Serif', ui-serif, Georgia, 'Times New Roman', serif;
+    --font-body-lg: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-body-md: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-label-md: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-label-sm: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+    /* Pushed up from 48px and given a normal (not negative) tracking: a
+       serif at this weight wants room to breathe rather than the tight
+       grotesk-style tracking the old sans display size used. */
+    --text-display-lg: 64px;
+    --text-display-lg--line-height: 64px;
+    --text-display-lg--letter-spacing: -0.01em;
+    --text-display-lg--font-weight: 400;
+
+    --text-headline-lg: 40px;
+    --text-headline-lg--line-height: 44px;
+    --text-headline-lg--letter-spacing: -0.01em;
+    --text-headline-lg--font-weight: 400;
+
+    --text-headline-lg-mobile: 30px;
+    --text-headline-lg-mobile--line-height: 34px;
+    --text-headline-lg-mobile--font-weight: 400;
+
+    --text-headline-md: 28px;
+    --text-headline-md--line-height: 34px;
+    --text-headline-md--font-weight: 400;
+
+    --text-body-lg: 18px;
+    --text-body-lg--line-height: 28px;
+    --text-body-lg--font-weight: 400;
+
+    --text-body-md: 16px;
+    --text-body-md--line-height: 24px;
+    --text-body-md--font-weight: 400;
+
+    --text-label-md: 14px;
+    --text-label-md--line-height: 20px;
+    --text-label-md--letter-spacing: 0.05em;
+    --text-label-md--font-weight: 600;
+
+    --text-label-sm: 12px;
+    --text-label-sm--line-height: 16px;
+    --text-label-sm--font-weight: 500;
+
+    /* Formalized "tinted shadow" elevation from the design system: teal-tinted
+       ambient shadows instead of neutral grey ones, with a noticeably deeper
+       -lg step for hover so the lift reads as a real gesture, not a hint. */
+    --shadow-card: 0 4px 20px rgba(0, 104, 95, 0.08);
+    --shadow-card-lg: 0 16px 40px -8px rgba(0, 104, 95, 0.24);
+    --shadow-modal: 0 24px 64px -12px rgba(0, 104, 95, 0.32);
 }
 
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --destructive-foreground: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.87 0 0);
+    /* SplitFCFA design system — light (source of truth referenced by the
+       --color-* theme entries above; .dark below overrides every line here
+       with its dark counterpart). */
+    --surface: #f8f9ff;
+    --surface-dim: #d0dbed;
+    --surface-bright: #f8f9ff;
+    --surface-container-lowest: #ffffff;
+    --surface-container-low: #eff4ff;
+    --surface-container: #e6eeff;
+    --surface-container-high: #dee9fc;
+    --surface-container-highest: #d9e3f6;
+    --surface-variant: #d9e3f6;
+    --surface-tint: #006a61;
+    --on-surface: #121c2a;
+    --on-surface-variant: #3d4947;
+    --inverse-surface: #27313f;
+    --inverse-on-surface: #eaf1ff;
+    --inverse-primary: #6bd8cb;
+    --outline: #6d7a77;
+    --outline-variant: #bcc9c6;
+
+    --primary: #00685f;
+    --on-primary: #ffffff;
+    --primary-container: #008378;
+    --on-primary-container: #f4fffc;
+    --primary-fixed: #89f5e7;
+    --primary-fixed-dim: #6bd8cb;
+    --on-primary-fixed: #00201d;
+    --on-primary-fixed-variant: #005049;
+
+    --secondary: #a93349;
+    --on-secondary: #ffffff;
+    --secondary-container: #fe7488;
+    --on-secondary-container: #730425;
+    --secondary-fixed: #ffdadc;
+    --secondary-fixed-dim: #ffb2b9;
+    --on-secondary-fixed: #400010;
+    --on-secondary-fixed-variant: #891933;
+
+    --tertiary: #765700;
+    --on-tertiary: #ffffff;
+    --tertiary-container: #956e00;
+    --on-tertiary-container: #fffbff;
+    --tertiary-fixed: #ffdf9f;
+    --tertiary-fixed-dim: #f9bd22;
+    --on-tertiary-fixed: #261a00;
+    --on-tertiary-fixed-variant: #5c4300;
+
+    --error: #ba1a1a;
+    --on-error: #ffffff;
+    --error-container: #ffdad6;
+    --on-error-container: #93000a;
+
+    /* shadcn tokens — mapped onto the SplitFCFA roles above instead of a
+       separate hand-picked palette, so there is one color system, not two. */
+    --background: var(--surface);
+    --foreground: var(--on-surface);
+    --on-background: var(--on-surface);
+    --card: var(--surface-container-lowest);
+    --card-foreground: var(--on-surface);
+    --popover: var(--surface-container-lowest);
+    --popover-foreground: var(--on-surface);
+    --primary-foreground: var(--on-primary);
+    --secondary-foreground: var(--on-secondary);
+    --muted: var(--surface-container);
+    --muted-foreground: var(--on-surface-variant);
+    --accent: var(--surface-container-low);
+    --accent-foreground: var(--on-surface);
+    --destructive: var(--error);
+    --destructive-foreground: var(--on-error);
+    --border: var(--outline-variant);
+    --input: var(--surface-variant);
+    --ring: var(--primary);
     --chart-1: oklch(0.646 0.222 41.116);
     --chart-2: oklch(0.6 0.118 184.704);
     --chart-3: oklch(0.398 0.07 227.392);
     --chart-4: oklch(0.828 0.189 84.429);
     --chart-5: oklch(0.769 0.188 70.08);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.87 0 0);
+    --sidebar: var(--surface-container);
+    --sidebar-foreground: var(--on-surface);
+    --sidebar-primary: var(--primary);
+    --sidebar-primary-foreground: var(--on-primary);
+    --sidebar-accent: var(--surface-container-highest);
+    --sidebar-accent-foreground: var(--on-surface);
+    --sidebar-border: var(--outline-variant);
+    --sidebar-ring: var(--primary);
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.145 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.145 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.985 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.396 0.141 25.723);
-    --destructive-foreground: oklch(0.637 0.237 25.331);
-    --border: oklch(0.269 0 0);
-    --input: oklch(0.269 0 0);
-    --ring: oklch(0.439 0 0);
+    /* SplitFCFA design system, dark. primary/secondary/tertiary (plus their
+       container pairs) are derived from the fixed and on-fixed-variant
+       tones already defined above rather than invented: Material Design 3
+       fixed roles exist specifically to supply the correct light-on-dark
+       tone for a hue, so the light theme on-primary-fixed-variant becomes
+       the dark theme primary-container, etc. The fixed and on-fixed tokens
+       themselves are NOT redefined here, Material Design 3 defines them to
+       stay constant across light and dark, so they simply keep the :root
+       values above. */
+    --surface: #10131c;
+    --surface-dim: #0a0c12;
+    --surface-bright: #363b48;
+    --surface-container-lowest: #0a0c12;
+    --surface-container-low: #181c26;
+    --surface-container: #1c202b;
+    --surface-container-high: #262b36;
+    --surface-container-highest: #313642;
+    --surface-variant: #414753;
+    --surface-tint: #6bd8cb;
+    --on-surface: #e3e6ee;
+    --on-surface-variant: #c2ccc9;
+    --inverse-surface: #e3e6ee;
+    --inverse-on-surface: #121c2a;
+    --inverse-primary: #00685f;
+    --outline: #8d9996;
+    --outline-variant: #3d4947;
+
+    --primary: #6bd8cb;
+    --on-primary: #00382f;
+    --primary-container: #005048;
+    --on-primary-container: #89f5e7;
+
+    --secondary: #ffb2b9;
+    --on-secondary: #5e1123;
+    --secondary-container: #891933;
+    --on-secondary-container: #ffdadc;
+
+    --tertiary: #f9bd22;
+    --on-tertiary: #3d2e00;
+    --tertiary-container: #5c4300;
+    --on-tertiary-container: #ffdf9f;
+
+    --error: #ffb4ab;
+    --on-error: #690005;
+    --error-container: #93000a;
+    --on-error-container: #ffdad6;
+
+    --background: var(--surface);
+    --foreground: var(--on-surface);
+    --on-background: var(--on-surface);
+    --card: var(--surface-container-lowest);
+    --card-foreground: var(--on-surface);
+    --popover: var(--surface-container-lowest);
+    --popover-foreground: var(--on-surface);
+    --primary-foreground: var(--on-primary);
+    --secondary-foreground: var(--on-secondary);
+    --muted: var(--surface-container);
+    --muted-foreground: var(--on-surface-variant);
+    --accent: var(--surface-container-high);
+    --accent-foreground: var(--on-surface);
+    --destructive: var(--error);
+    --destructive-foreground: var(--on-error);
+    --border: var(--outline-variant);
+    --input: var(--surface-container-high);
+    --ring: var(--primary);
     --chart-1: oklch(0.488 0.243 264.376);
     --chart-2: oklch(0.696 0.17 162.48);
     --chart-3: oklch(0.769 0.188 70.08);
     --chart-4: oklch(0.627 0.265 303.9);
     --chart-5: oklch(0.645 0.246 16.439);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.985 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(0.269 0 0);
-    --sidebar-ring: oklch(0.439 0 0);
+    --sidebar: var(--surface-container-low);
+    --sidebar-foreground: var(--on-surface);
+    --sidebar-primary: var(--primary-container);
+    --sidebar-primary-foreground: var(--on-primary-container);
+    --sidebar-accent: var(--surface-container-high);
+    --sidebar-accent-foreground: var(--on-surface);
+    --sidebar-border: var(--outline-variant);
+    --sidebar-ring: var(--primary);
 }
 
 @layer base {
@@ -139,5 +376,29 @@
 
     body {
         @apply bg-background text-foreground;
+    }
+}
+
+/* "Warm Ledger" motion: the single choreographed reveal moment each
+   SplitFCFA screen uses on mount (see useStaggerReveal). Kept outside
+   @layer so it always wins regardless of utility ordering. */
+@keyframes split-rise {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.split-stagger {
+    animation: split-rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .split-stagger {
+        animation: none;
     }
 }
