@@ -30,8 +30,9 @@ export default function ForgotPassword({ status }: { status?: string }) {
                             Mot de passe oublié&nbsp;?
                         </h1>
                         <p className="font-body-md text-body-md text-on-surface-variant">
-                            Entrez l&apos;adresse e-mail associée à votre compte et nous vous enverrons un
-                            lien pour réinitialiser votre mot de passe.
+                            Entrez l&apos;adresse e-mail associée à votre compte
+                            et nous vous enverrons un lien pour réinitialiser
+                            votre mot de passe.
                         </p>
                     </div>
 
@@ -94,7 +95,10 @@ export default function ForgotPassword({ status }: { status?: string }) {
                 <div className="mt-lg text-center font-label-sm text-label-sm text-outline">
                     <p>
                         Besoin d&apos;aide ?{' '}
-                        <a href="#" className="font-medium text-primary hover:underline">
+                        <a
+                            href="#"
+                            className="font-medium text-primary hover:underline"
+                        >
                             Contacter le support
                         </a>
                     </p>

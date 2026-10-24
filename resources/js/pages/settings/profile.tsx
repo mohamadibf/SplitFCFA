@@ -89,22 +89,24 @@ export default function Profile({
                                 auth.user.email_verified_at === null && (
                                     <div>
                                         <p className="-mt-4 text-sm text-muted-foreground">
-                                            Votre adresse e-mail n&apos;est pas vérifiée.{' '}
+                                            Votre adresse e-mail n&apos;est pas
+                                            vérifiée.{' '}
                                             <Link
                                                 href={send()}
                                                 as="button"
                                                 className="text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
                                             >
-                                                Cliquez ici pour renvoyer l&apos;e-mail de
-                                                vérification.
+                                                Cliquez ici pour renvoyer
+                                                l&apos;e-mail de vérification.
                                             </Link>
                                         </p>
 
                                         {status ===
                                             'verification-link-sent' && (
                                             <div className="mt-2 text-sm font-medium text-green-600">
-                                                Un nouveau lien de vérification a été
-                                                envoyé à votre adresse e-mail.
+                                                Un nouveau lien de vérification
+                                                a été envoyé à votre adresse
+                                                e-mail.
                                             </div>
                                         )}
                                     </div>

@@ -13,7 +13,10 @@ type AtmosphereProps = {
  */
 export function Atmosphere({ variant = 'cool' }: AtmosphereProps) {
     return (
-        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden>
+        <div
+            className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+            aria-hidden
+        >
             <div
                 className="absolute -top-1/4 -left-1/4 size-[70vmax] rounded-full opacity-[0.16] blur-[110px]"
                 style={{

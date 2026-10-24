@@ -13,13 +13,19 @@ type StatCardProps = {
     style?: CSSProperties;
 };
 
-const ACCENT_VALUE_CLASSES: Record<'default' | 'primary' | 'secondary', string> = {
+const ACCENT_VALUE_CLASSES: Record<
+    'default' | 'primary' | 'secondary',
+    string
+> = {
     default: 'text-on-surface',
     primary: 'text-primary',
     secondary: 'text-secondary',
 };
 
-const ACCENT_SUFFIX_CLASSES: Record<'default' | 'primary' | 'secondary', string> = {
+const ACCENT_SUFFIX_CLASSES: Record<
+    'default' | 'primary' | 'secondary',
+    string
+> = {
     default: 'text-on-surface-variant',
     primary: 'text-primary/70',
     secondary: 'text-secondary/70',
@@ -35,7 +41,15 @@ const ACCENT_DECOR_CLASSES: Record<'primary' | 'secondary', string> = {
     secondary: 'bg-secondary/5',
 };
 
-export function StatCard({ label, value, suffix, accent, trend, className, style }: StatCardProps) {
+export function StatCard({
+    label,
+    value,
+    suffix,
+    accent,
+    trend,
+    className,
+    style,
+}: StatCardProps) {
     const tone = accent ?? 'default';
     const animatedValue = useCountUp(value);
 
@@ -50,7 +64,7 @@ export function StatCard({ label, value, suffix, accent, trend, className, style
         >
             <div
                 className={cn(
-                    '-top-4 -right-4 absolute size-24 rounded-full opacity-100 transition-all duration-500 group-hover:scale-150 group-hover:opacity-70',
+                    'absolute -top-4 -right-4 size-24 rounded-full opacity-100 transition-all duration-500 group-hover:scale-150 group-hover:opacity-70',
                     accent ? ACCENT_DECOR_CLASSES[accent] : 'bg-primary/5',
                 )}
             />
@@ -77,7 +91,7 @@ export function StatCard({ label, value, suffix, accent, trend, className, style
                 )}
             </div>
             {trend && (
-                <TrendingUp className="absolute top-4 right-4 size-5 text-primary transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <TrendingUp className="absolute top-4 right-4 size-5 text-primary transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             )}
         </div>
     );

@@ -19,7 +19,7 @@ function OtpSlot({ index }: { index: number }) {
             className={cn(
                 // Inter + tabular-nums here, not the serif headline font: a
                 // security code needs unambiguous digits, not editorial flair.
-                'flex h-14 w-12 items-center justify-center rounded-lg bg-surface-container-high font-body-md text-headline-md text-on-surface tabular-nums outline-none transition-colors duration-200',
+                'flex h-14 w-12 items-center justify-center rounded-lg bg-surface-container-high font-body-md text-headline-md text-on-surface tabular-nums transition-colors duration-200 outline-none',
                 isActive && 'bg-surface-container-lowest ring-2 ring-primary',
             )}
         >
@@ -37,8 +37,8 @@ export default function TwoFactorChallenge() {
             return {
                 title: 'Code de récupération',
                 description:
-                    'Confirmez votre identité en entrant l\'un de vos codes de récupération.',
-                toggleText: 'utiliser un code d\'authentification',
+                    "Confirmez votre identité en entrant l'un de vos codes de récupération.",
+                toggleText: "utiliser un code d'authentification",
             };
         }
 
@@ -95,7 +95,10 @@ export default function TwoFactorChallenge() {
                                             required
                                             className="w-full rounded-lg bg-surface-container-high px-4 py-3 text-center font-body-md text-body-md text-on-surface outline-none focus:ring-2 focus:ring-primary"
                                         />
-                                        <InputError message={errors.recovery_code} className="mt-2" />
+                                        <InputError
+                                            message={errors.recovery_code}
+                                            className="mt-2"
+                                        />
                                     </div>
                                 ) : (
                                     <div className="flex w-full flex-col items-center gap-3">
@@ -110,9 +113,15 @@ export default function TwoFactorChallenge() {
                                             containerClassName="w-full max-w-[320px] justify-between gap-2"
                                         >
                                             <InputOTPGroup className="w-full justify-between gap-2">
-                                                {Array.from({ length: OTP_MAX_LENGTH }, (_, index) => (
-                                                    <OtpSlot key={index} index={index} />
-                                                ))}
+                                                {Array.from(
+                                                    { length: OTP_MAX_LENGTH },
+                                                    (_, index) => (
+                                                        <OtpSlot
+                                                            key={index}
+                                                            index={index}
+                                                        />
+                                                    ),
+                                                )}
                                             </InputOTPGroup>
                                         </InputOTP>
                                         <InputError message={errors.code} />
@@ -131,7 +140,8 @@ export default function TwoFactorChallenge() {
                                     {!showRecoveryInput && (
                                         <>
                                             <span className="font-body-md text-body-md text-on-surface-variant">
-                                                Vous n&apos;avez pas reçu le code ?
+                                                Vous n&apos;avez pas reçu le
+                                                code ?
                                             </span>
                                             <button
                                                 type="button"
@@ -145,7 +155,9 @@ export default function TwoFactorChallenge() {
                                     <button
                                         type="button"
                                         className="font-label-sm text-label-sm text-on-surface-variant underline decoration-outline-variant underline-offset-4 transition-colors hover:text-primary"
-                                        onClick={() => toggleRecoveryMode(clearErrors)}
+                                        onClick={() =>
+                                            toggleRecoveryMode(clearErrors)
+                                        }
                                     >
                                         ou {content.toggleText}
                                     </button>

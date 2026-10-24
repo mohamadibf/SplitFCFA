@@ -3,11 +3,12 @@ import { Car, ChefHat, TrendingUp, Ticket, Award } from 'lucide-react';
 import { useState } from 'react';
 import { SplitSidebar } from '@/components/splitfcfa/app-sidebar';
 import { Atmosphere } from '@/components/splitfcfa/atmosphere';
-import { analytics } from '@/lib/splitfcfa-mock-data';
+import { analyticsByPeriod } from '@/lib/splitfcfa-mock-data';
+import type { AnalyticsPeriod } from '@/lib/splitfcfa-mock-data';
 import { staggerReveal } from '@/lib/stagger-reveal';
 import { cn } from '@/lib/utils';
 
-type Period = 'semaine' | 'mois' | 'annee';
+type Period = AnalyticsPeriod;
 
 const PERIODS: { key: Period; label: string }[] = [
     { key: 'semaine', label: 'Semaine' },
@@ -21,8 +22,29 @@ const BREAKDOWN_STYLE: Record<string, { dot: string; icon: typeof Car }> = {
     loisirs: { dot: 'bg-secondary-container/20 text-secondary', icon: Ticket },
 };
 
+const CATEGORY_COLOR: Record<string, string> = {
+    repas: '#956e00',
+    transport: '#00685f',
+    loisirs: '#fe7488',
+};
+
+function donutGradient(
+    breakdown: { category: string; percent: number }[],
+): string {
+    let from = 0;
+    const stops = breakdown.map(({ category, percent }) => {
+        const stop = `${CATEGORY_COLOR[category]} ${from}% ${from + percent}%`;
+        from += percent;
+
+        return stop;
+    });
+
+    return `conic-gradient(${stops.join(', ')})`;
+}
+
 export default function Analytics() {
     const [period, setPeriod] = useState<Period>('mois');
+    const analytics = analyticsByPeriod[period];
 
     return (
         <div className="flex min-h-screen w-full flex-col bg-surface text-on-surface antialiased md:flex-row">
@@ -34,7 +56,7 @@ export default function Analytics() {
                 <Atmosphere />
                 <div className="relative flex flex-col justify-between gap-md md:flex-row md:items-center">
                     <div>
-                        <p className="mb-1 font-label-md text-label-md text-primary uppercase tracking-wider">
+                        <p className="mb-1 font-label-md text-label-md tracking-wider text-primary uppercase">
                             Analyses
                         </p>
                         <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-on-surface md:font-headline-lg md:text-headline-lg">
@@ -49,6 +71,7 @@ export default function Analytics() {
                             <button
                                 key={item.key}
                                 type="button"
+                                aria-pressed={period === item.key}
                                 onClick={() => setPeriod(item.key)}
                                 className={cn(
                                     'rounded-md px-4 py-2 font-label-md text-label-md transition-colors',
@@ -77,7 +100,7 @@ export default function Analytics() {
                                     Évolution des dépenses
                                 </h3>
                                 <p className="mt-1 font-label-md text-label-md text-on-surface-variant">
-                                    Ce mois-ci vs le mois dernier
+                                    {analytics.subtitle}
                                 </p>
                             </div>
                             <div className="flex gap-4">
@@ -96,8 +119,11 @@ export default function Analytics() {
                             </div>
                         </div>
                         <div className="mt-4 flex min-h-[200px] flex-1 items-end justify-between gap-2 border-b border-surface-dim pb-2">
-                            {analytics.weeks.map((week) => (
-                                <div key={week.label} className="flex w-full flex-col items-center gap-2">
+                            {analytics.bars.map((week) => (
+                                <div
+                                    key={week.label}
+                                    className="flex w-full flex-col items-center gap-2"
+                                >
                                     <div className="flex h-40 w-full items-end justify-center gap-1">
                                         <div
                                             className="w-1/3 rounded-t-sm bg-primary transition-[height] duration-700"
@@ -123,13 +149,16 @@ export default function Analytics() {
                         )}
                         style={staggerReveal(1).style}
                     >
-                        <h3 className="mb-6 font-headline-md text-headline-md text-on-surface">Répartition</h3>
+                        <h3 className="mb-6 font-headline-md text-headline-md text-on-surface">
+                            Répartition
+                        </h3>
                         <div className="flex flex-1 flex-col items-center justify-center">
                             <div
                                 className="relative mb-6 flex size-40 items-center justify-center rounded-full shadow-sm"
                                 style={{
-                                    background:
-                                        'conic-gradient(#956e00 0% 35%, #00685f 35% 80%, #fe7488 80% 100%)',
+                                    background: donutGradient(
+                                        analytics.breakdown,
+                                    ),
                                 }}
                             >
                                 <div className="flex size-24 flex-col items-center justify-center rounded-full bg-surface-container-lowest">
@@ -143,11 +172,15 @@ export default function Analytics() {
                             </div>
                             <div className="flex w-full flex-col gap-3">
                                 {analytics.breakdown.map((item) => {
-                                    const style = BREAKDOWN_STYLE[item.category];
+                                    const style =
+                                        BREAKDOWN_STYLE[item.category];
                                     const Icon = style.icon;
 
                                     return (
-                                        <div key={item.category} className="flex items-center justify-between">
+                                        <div
+                                            key={item.category}
+                                            className="flex items-center justify-between"
+                                        >
                                             <div className="flex items-center gap-3">
                                                 <div
                                                     className={cn(
@@ -190,7 +223,7 @@ export default function Analytics() {
                                 </div>
                             </div>
                             <div>
-                                <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+                                <p className="font-label-sm text-label-sm tracking-wider text-on-surface-variant uppercase">
                                     Top Dépenseur
                                 </p>
                                 <h4 className="font-headline-md text-headline-md text-on-surface">
@@ -202,7 +235,9 @@ export default function Analytics() {
                             <p className="font-headline-lg-mobile text-headline-lg-mobile text-secondary md:font-headline-lg md:text-headline-lg">
                                 {analytics.topSpender.amount}
                             </p>
-                            <p className="font-label-sm text-label-sm text-on-surface-variant">FCFA payés</p>
+                            <p className="font-label-sm text-label-sm text-on-surface-variant">
+                                FCFA payés
+                            </p>
                         </div>
                     </div>
 
@@ -217,22 +252,26 @@ export default function Analytics() {
                         <div className="absolute -bottom-8 -left-8 size-24 rounded-full bg-primary-fixed opacity-20 blur-xl" />
                         <div className="relative z-10 mb-4 flex items-center gap-2">
                             <TrendingUp className="size-5" />
-                            <h3 className="font-label-md text-label-md font-bold uppercase tracking-wider">
+                            <h3 className="font-label-md text-label-md font-bold tracking-wider uppercase">
                                 Aperçu du mois
                             </h3>
                         </div>
                         <div className="relative z-10 flex gap-8">
                             <div>
-                                <p className="mb-1 font-label-sm text-label-sm opacity-80">Vous devez</p>
+                                <p className="mb-1 font-label-sm text-label-sm opacity-80">
+                                    Vous devez
+                                </p>
                                 <p className="font-headline-md text-headline-md text-on-primary-container">
-                                    {analytics.monthSummary.youOwe}
+                                    {analytics.summary.youOwe}
                                 </p>
                             </div>
                             <div className="h-10 w-px self-center bg-on-primary-container/20" />
                             <div>
-                                <p className="mb-1 font-label-sm text-label-sm opacity-80">On vous doit</p>
+                                <p className="mb-1 font-label-sm text-label-sm opacity-80">
+                                    On vous doit
+                                </p>
                                 <p className="font-headline-md text-headline-md text-primary-fixed">
-                                    {analytics.monthSummary.owedToYou}
+                                    {analytics.summary.owedToYou}
                                 </p>
                             </div>
                         </div>

@@ -96,7 +96,9 @@ export default function Login({ status, canResetPassword }: Props) {
                                     <Lock className="absolute left-sm size-5 text-outline" />
                                     <input
                                         id="password"
-                                        type={showPassword ? 'text' : 'password'}
+                                        type={
+                                            showPassword ? 'text' : 'password'
+                                        }
                                         name="password"
                                         required
                                         autoComplete="current-password"
@@ -105,7 +107,9 @@ export default function Login({ status, canResetPassword }: Props) {
                                     />
                                     <button
                                         type="button"
-                                        onClick={() => setShowPassword((prev) => !prev)}
+                                        onClick={() =>
+                                            setShowPassword((prev) => !prev)
+                                        }
                                         aria-label={
                                             showPassword
                                                 ? 'Masquer le mot de passe'
@@ -141,7 +145,7 @@ export default function Login({ status, canResetPassword }: Props) {
                         Vous n&apos;avez pas de compte ?{' '}
                         <TextLink
                             href={register()}
-                            className="font-label-md text-primary decoration-2 decoration-primary underline-offset-2"
+                            className="font-label-md text-primary decoration-primary decoration-2 underline-offset-2"
                         >
                             Inscrivez-vous
                         </TextLink>

@@ -14,7 +14,8 @@ type Props = {
 
 export default function Register({ passwordRules }: Props) {
     const [showPassword, setShowPassword] = useState(false);
-    const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
+    const [showPasswordConfirmation, setShowPasswordConfirmation] =
+        useState(false);
 
     return (
         <div className="flex min-h-screen items-center justify-center bg-[#F8FAFC] p-4">
@@ -65,7 +66,10 @@ export default function Register({ passwordRules }: Props) {
                                         className="block w-full rounded-md border-transparent bg-[#EEF2F6] py-2.5 pr-3 pl-10 text-sm text-gray-900 transition-colors duration-200 focus:border-transparent focus:bg-white focus:ring-2 focus:ring-[#006D5B]"
                                     />
                                 </div>
-                                <InputError message={errors.name} className="mt-2" />
+                                <InputError
+                                    message={errors.name}
+                                    className="mt-2"
+                                />
                             </div>
 
                             <div>
@@ -102,7 +106,9 @@ export default function Register({ passwordRules }: Props) {
                                     <input
                                         id="password"
                                         name="password"
-                                        type={showPassword ? 'text' : 'password'}
+                                        type={
+                                            showPassword ? 'text' : 'password'
+                                        }
                                         required
                                         autoComplete="new-password"
                                         placeholder="••••••••"
@@ -111,7 +117,9 @@ export default function Register({ passwordRules }: Props) {
                                     />
                                     <button
                                         type="button"
-                                        onClick={() => setShowPassword((prev) => !prev)}
+                                        onClick={() =>
+                                            setShowPassword((prev) => !prev)
+                                        }
                                         aria-label={
                                             showPassword
                                                 ? 'Masquer le mot de passe'
@@ -141,7 +149,11 @@ export default function Register({ passwordRules }: Props) {
                                     <input
                                         id="password_confirmation"
                                         name="password_confirmation"
-                                        type={showPasswordConfirmation ? 'text' : 'password'}
+                                        type={
+                                            showPasswordConfirmation
+                                                ? 'text'
+                                                : 'password'
+                                        }
                                         required
                                         autoComplete="new-password"
                                         placeholder="••••••••"
@@ -150,7 +162,11 @@ export default function Register({ passwordRules }: Props) {
                                     />
                                     <button
                                         type="button"
-                                        onClick={() => setShowPasswordConfirmation((prev) => !prev)}
+                                        onClick={() =>
+                                            setShowPasswordConfirmation(
+                                                (prev) => !prev,
+                                            )
+                                        }
                                         aria-label={
                                             showPasswordConfirmation
                                                 ? 'Masquer le mot de passe'
@@ -165,7 +181,9 @@ export default function Register({ passwordRules }: Props) {
                                         )}
                                     </button>
                                 </div>
-                                <InputError message={errors.password_confirmation} />
+                                <InputError
+                                    message={errors.password_confirmation}
+                                />
                             </div>
 
                             <div className="mt-4 flex items-start">
@@ -174,17 +192,26 @@ export default function Register({ passwordRules }: Props) {
                                         id="terms"
                                         name="terms"
                                         required
-                                        className="rounded border-gray-300 data-[state=checked]:border-[#006D5B] data-[state=checked]:bg-[#006D5B] focus-visible:ring-[#006D5B]/50"
+                                        className="rounded border-gray-300 focus-visible:ring-[#006D5B]/50 data-[state=checked]:border-[#006D5B] data-[state=checked]:bg-[#006D5B]"
                                     />
                                 </div>
                                 <div className="ml-2 text-sm">
-                                    <label htmlFor="terms" className="font-medium text-[#4A5568]">
+                                    <label
+                                        htmlFor="terms"
+                                        className="font-medium text-[#4A5568]"
+                                    >
                                         J&apos;accepte les{' '}
-                                        <a href="#" className="text-[#006D5B] hover:underline">
+                                        <a
+                                            href="#"
+                                            className="text-[#006D5B] hover:underline"
+                                        >
                                             conditions d&apos;utilisation
                                         </a>{' '}
                                         et la{' '}
-                                        <a href="#" className="text-[#006D5B] hover:underline">
+                                        <a
+                                            href="#"
+                                            className="text-[#006D5B] hover:underline"
+                                        >
                                             politique de confidentialité
                                         </a>
                                         .

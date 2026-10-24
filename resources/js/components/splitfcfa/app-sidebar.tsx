@@ -1,5 +1,14 @@
 import { Link, usePage } from '@inertiajs/react';
-import { BarChart3, Bell, Handshake, LayoutDashboard, Plus, Receipt } from 'lucide-react';
+import {
+    BarChart3,
+    Bell,
+    Handshake,
+    LayoutDashboard,
+    Plus,
+    Receipt,
+} from 'lucide-react';
+import { toast } from 'sonner';
+import { AddExpenseModal } from '@/components/splitfcfa/add-expense-modal';
 import { UserAvatar } from '@/components/splitfcfa/user-avatar';
 import {
     DropdownMenu,
@@ -8,25 +17,51 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { UserMenuContent } from '@/components/user-menu-content';
 import splitfcfaLogo from '@/images/splitfcfa-logo.png';
+import { setAddExpenseOpen } from '@/lib/splitfcfa-store';
 import { staggerReveal } from '@/lib/stagger-reveal';
 import { cn } from '@/lib/utils';
-import { dashboard } from '@/routes';
 
 export type SplitNavKey = 'dashboard' | 'expenses' | 'settle-up' | 'analytics';
 
-const NAV_ITEMS: { key: SplitNavKey; label: string; icon: typeof LayoutDashboard; href: string }[] = [
-    { key: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, href: dashboard().url },
-    { key: 'expenses', label: 'Expenses', icon: Receipt, href: '/preview/expenses' },
-    { key: 'settle-up', label: 'Settle Up', icon: Handshake, href: '/preview/settle-up' },
-    { key: 'analytics', label: 'Analytics', icon: BarChart3, href: '/preview/analytics' },
+const NAV_ITEMS: {
+    key: SplitNavKey;
+    label: string;
+    icon: typeof LayoutDashboard;
+    href: string;
+}[] = [
+    {
+        key: 'dashboard',
+        label: 'Dashboard',
+        icon: LayoutDashboard,
+        href: '/preview/dashboard',
+    },
+    {
+        key: 'expenses',
+        label: 'Expenses',
+        icon: Receipt,
+        href: '/preview/expenses',
+    },
+    {
+        key: 'settle-up',
+        label: 'Settle Up',
+        icon: Handshake,
+        href: '/preview/settle-up',
+    },
+    {
+        key: 'analytics',
+        label: 'Analytics',
+        icon: BarChart3,
+        href: '/preview/analytics',
+    },
 ];
 
 type SplitSidebarProps = {
     active?: SplitNavKey;
-    onAddExpense?: () => void;
 };
 
-export function SplitSidebar({ active, onAddExpense }: SplitSidebarProps) {
+const notifyEmpty = () => toast('Aucune nouvelle notification');
+
+export function SplitSidebar({ active }: SplitSidebarProps) {
     const { auth } = usePage().props;
     const user = auth.user;
 
@@ -80,7 +115,7 @@ export function SplitSidebar({ active, onAddExpense }: SplitSidebarProps) {
                 <div className="mt-auto px-4">
                     <button
                         type="button"
-                        onClick={onAddExpense}
+                        onClick={() => setAddExpenseOpen(true)}
                         className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary-fixed py-3 font-label-md text-label-md text-on-primary-fixed transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,0,0,0.25)] active:scale-95"
                     >
                         <Plus className="size-5" />
@@ -94,7 +129,11 @@ export function SplitSidebar({ active, onAddExpense }: SplitSidebarProps) {
                                     className="mt-lg flex w-full items-center gap-3 rounded-xl px-2 py-1 text-left transition-colors hover:bg-on-primary/10 dark:hover:bg-on-primary-container/10"
                                 >
                                     <UserAvatar
-                                        member={{ id: 'me', name: user.name, tone: 'primary' }}
+                                        member={{
+                                            id: 'me',
+                                            name: user.name,
+                                            tone: 'primary',
+                                        }}
                                         className="size-10 bg-primary-fixed text-on-primary-fixed ring-2 ring-on-primary/20 dark:ring-on-primary-container/20"
                                     />
                                     <div className="min-w-0">
@@ -107,14 +146,22 @@ export function SplitSidebar({ active, onAddExpense }: SplitSidebarProps) {
                                     </div>
                                 </button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent align="start" side="top" className="w-56">
+                            <DropdownMenuContent
+                                align="start"
+                                side="top"
+                                className="w-56"
+                            >
                                 <UserMenuContent user={user} />
                             </DropdownMenuContent>
                         </DropdownMenu>
                     ) : (
                         <div className="mt-lg flex items-center gap-3 px-2">
                             <UserAvatar
-                                member={{ id: 'guest', name: 'Vous', tone: 'primary' }}
+                                member={{
+                                    id: 'guest',
+                                    name: 'Vous',
+                                    tone: 'primary',
+                                }}
                                 className="size-10 bg-primary-fixed text-on-primary-fixed ring-2 ring-on-primary/20 dark:ring-on-primary-container/20"
                             />
                             <div>
@@ -132,7 +179,7 @@ export function SplitSidebar({ active, onAddExpense }: SplitSidebarProps) {
 
             {/* Mobile header */}
             <header className="sticky top-0 z-40 flex items-center justify-between bg-surface px-margin-mobile py-4 shadow-[0_4px_20px_rgba(0,104,95,0.1)] md:hidden">
-                <h1 className="flex items-center gap-2 font-headline-md text-headline-md text-primary font-bold">
+                <h1 className="flex items-center gap-2 font-headline-md text-headline-md font-bold text-primary">
                     <img
                         src={splitfcfaLogo}
                         alt="SplitFCFA"
@@ -143,6 +190,8 @@ export function SplitSidebar({ active, onAddExpense }: SplitSidebarProps) {
                 <div className="flex gap-4">
                     <button
                         type="button"
+                        onClick={notifyEmpty}
+                        aria-label="Notifications"
                         className="text-on-surface-variant transition-colors duration-200 hover:text-primary active:scale-95"
                     >
                         <Bell className="size-5" />
@@ -152,7 +201,11 @@ export function SplitSidebar({ active, onAddExpense }: SplitSidebarProps) {
                             <DropdownMenuTrigger asChild>
                                 <button type="button">
                                     <UserAvatar
-                                        member={{ id: 'me', name: user.name, tone: 'primary' }}
+                                        member={{
+                                            id: 'me',
+                                            name: user.name,
+                                            tone: 'primary',
+                                        }}
                                         className="size-8 border-2 border-surface-container-highest"
                                     />
                                 </button>
@@ -163,13 +216,17 @@ export function SplitSidebar({ active, onAddExpense }: SplitSidebarProps) {
                         </DropdownMenu>
                     ) : (
                         <UserAvatar
-                            member={{ id: 'guest', name: 'Vous', tone: 'primary' }}
+                            member={{
+                                id: 'guest',
+                                name: 'Vous',
+                                tone: 'primary',
+                            }}
                             className="size-8 border-2 border-surface-container-highest"
                         />
                     )}
                 </div>
             </header>
-            <div className="sticky top-[64px] z-30 flex gap-4 overflow-x-auto border-b border-surface-container-highest bg-surface px-margin-mobile py-2 md:hidden">
+            <div className="sticky top-16 z-30 flex [scrollbar-width:none] justify-between gap-4 overflow-x-auto border-b border-surface-container-highest bg-surface px-margin-mobile py-2 md:hidden [&::-webkit-scrollbar]:hidden">
                 {NAV_ITEMS.map((item) => (
                     <Link
                         key={item.key}
@@ -185,6 +242,15 @@ export function SplitSidebar({ active, onAddExpense }: SplitSidebarProps) {
                     </Link>
                 ))}
             </div>
+            <button
+                type="button"
+                onClick={() => setAddExpenseOpen(true)}
+                aria-label="Ajouter une dépense"
+                className="fixed right-5 bottom-5 z-40 flex size-14 items-center justify-center rounded-full bg-primary text-on-primary shadow-[0_8px_24px_rgba(0,104,95,0.35)] transition-transform active:scale-95 md:hidden"
+            >
+                <Plus className="size-6" />
+            </button>
+            <AddExpenseModal />
         </>
     );
 }
